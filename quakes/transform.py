@@ -36,7 +36,7 @@ def split_data(df: pd.DataFrame, test_size: float = 0.2):
     )
 
 
-def build_preprocessor(scaler: str = "robust") -> ColumnTransformer:
+def build_preprocessor(scaler: str = "robust", degree: int = 1) -> ColumnTransformer:
     """ColumnTransformer over config.NUMERIC and config.NOMINAL.
 
     numeric: median imputation, then a scaler chosen by name
