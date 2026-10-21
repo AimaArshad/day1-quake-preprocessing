@@ -70,9 +70,6 @@ def clean(df: pd.DataFrame, verbose: bool = False) -> pd.DataFrame:
     return df
 
 
-
-
- 
 if __name__ == "__main__":
     from quakes.fetch import fetch_feed, geojson_to_df
  
@@ -81,11 +78,12 @@ if __name__ == "__main__":
     # Explore
     print(raw["type"].value_counts(dropna=False), "\n")
     print(raw["place"].sample(5, random_state=0).tolist(), "\n")
-    print(raw[["mag", "depth_km"]].describe(), "\n")
+    print(raw[["mag", "depth_km"]].describe(), "\n")        # Helps you spot weird ranges.
  
-    out = clean(raw, verbose=True)
+    out = clean(raw, verbose=True)     # Runs the full cleaning pipeline and prints step-by-step row counts.
  
     # Decision point: outliers and negative values
-    for col in ("mag", "depth_km"):
-        mask = iqr_outlier_mask(out[col])
+    for col in ("mag", "depth_km"):                              # Loop over the two numeric columns we want to check.
+        mask = iqr_outlier_mask(out[col])                        # Get a Boolean mask of IQR outliers.
         print(f"\n{col}: {mask.sum()} IQR outliers, {(out[col] < 0).sum()} negative values")
+        

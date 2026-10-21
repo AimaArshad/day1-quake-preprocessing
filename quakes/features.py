@@ -21,11 +21,12 @@ def add_quality_features(df: pd.DataFrame) -> pd.DataFrame:
     update_lag_hours = hours between 'time' and 'updated'
     is_reviewed      = 1 if status == 'reviewed' else 0
     nst_missing      = 1 if 'nst' is missing else 0
-    """
+    """                
+       
     df = df.copy()
     lag = pd.to_datetime(df["updated"], utc=True) - pd.to_datetime(df["time"], utc=True)
-    df["update_lag_hours"] = lag.dt.total_seconds() / 3600
-    df["is_reviewed"] = (df["status"] == "reviewed").astype(int)
+    df["update_lag_hours"] = lag.dt.total_seconds() / 3600          #Example: if lag = 9000 seconds → 2.5 hours.     # seconds to hours.
+    df["is_reviewed"] = (df["status"] == "reviewed").astype(int)        #.astype(int) → converts True → 1, False → 0.
     df["nst_missing"] = df["nst"].isna().astype(int)
     return df
 
@@ -56,3 +57,4 @@ def drop_leaky_columns(df: pd.DataFrame) -> pd.DataFrame:
     """Drop every column listed in config.LEAKY (ignore ones that are absent)."""
     cols = [c for c in config.LEAKY if c in df.columns]
     return df.drop(columns=cols)
+

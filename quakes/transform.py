@@ -58,3 +58,5 @@ def build_preprocessor(scaler: str = "robust") -> ColumnTransformer:
         ("num", numeric_pipe, config.NUMERIC),
         ("nom", nominal_pipe, config.NOMINAL),
     ])
+
+

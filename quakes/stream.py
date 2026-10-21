@@ -25,7 +25,7 @@ def filter_unseen(df: pd.DataFrame, seen: set) -> pd.DataFrame:
     seen.update(p for p, k in zip(pairs, keep) if k)  # in-place update
     return new_df
     
-
+    
 
 def run_stream(feed: str, interval_s: int, duration_s: int, out_path: str) -> None:
     """Poll `feed` every `interval_s` seconds for `duration_s` seconds.
@@ -52,13 +52,15 @@ def run_stream(feed: str, interval_s: int, duration_s: int, out_path: str) -> No
                 with open(out_path, "a", encoding="utf-8") as f:
                     f.write(new_df.to_json(orient="records", lines=True))
                     f.write("\n")
+                    
+           
  
-            print(f"[{stamp}] {len(new_df)} new / {len(df)} fetched", flush=True)
+            print(f"[{stamp}] {len(new_df)} new / {len(df)} fetched", flush=True)  #flush=True  (Forces Python to print immediately instead of buffering.)
         except Exception as e:  # one bad poll must not stop the loop
             print(f"[{stamp}] poll failed: {e}", flush=True)
  
         time.sleep(interval_s)
-
+       
 
 def main() -> None:
     """argparse: --feed (default all_hour), --interval (60), --duration (2400),

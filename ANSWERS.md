@@ -21,6 +21,7 @@ Takeaway: id alone isn't a stable identity — the same event returns with corre
 ## 3. Outliers
 
 Your decision on negative depth and negative magnitude, with reasoning.
+
 Negative depth — keep. Real measurements above the reference datum (volcanic/geothermal/mountainous shallow quakes). Physically plausible, not an error.
 Negative magnitude — keep. Magnitude is a log scale; "negative" just means very small. Real detections on sensitive local networks.
 Rule: IQR flags unusual, not wrong. Delete only if unusual and physically implausible. Neither is.
