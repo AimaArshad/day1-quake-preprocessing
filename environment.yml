@@ -11,3 +11,7 @@ dependencies:
   - seaborn
   - pytest
   - joblib
+  - jupyterlab
+  - ipykernel
+
+

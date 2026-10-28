@@ -1,0 +1,4 @@
+2026-10-22 01:31:53,851 INFO quakes.etl: Extracted 1908 rows from live feed 'all_week'
+2026-10-22 01:31:53,854 INFO quakes.etl: Stage extract: 1908 rows
+2026-10-22 01:31:54,047 INFO quakes.etl: Stage transform: 1865 rows, 31 columns
+2026-10-22 01:31:54,264 INFO quakes.etl: Stage load: wrote 1865 rows to D:\preparation\NI-AI Projects\2nd quiz\day1-quake-preprocessing\data\processed\quakes.db
